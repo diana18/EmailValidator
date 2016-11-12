@@ -11,16 +11,17 @@
 
 
 # Check that there's exactly one @
-def hasexactlyoneAT(email):
-	numberofATs = email.count("@")
-	if numberofATs > 1 :
+def testATs(email):
+	numberOfATs = email.count("@")
+	if numberOfATs > 1 :
 		raise SystemExit("Sorry! There can only be one @ character in a valid email address.")
 	if "@" not in email:
 		raise SystemExit("Sorry! This is not a valid email. Your email must have an @ character.")
 
-# Check that it has no more than one period after the @
-def hasnomorethanoneperiod(string):
+# Check for periods
+def testPeriods(string):
 	numberofperiods = string.count(".")
+	# Check whether it has more than 1 period
 	if numberofperiods > 1 :
 		raise SystemExit("Sorry! There can only be one dot after the @ in a valid email address.")
 
@@ -28,13 +29,13 @@ def hasnomorethanoneperiod(string):
 print("Your Very Own Email Validator!")
 email = raw_input("Type your email: ")
 
-hasexactlyoneAT(email)
+testATs(email)
 
 # Partition email into two strings separated by @
 string1 = email.split("@")[0] 
 string2 = email.split("@")[1]
 
-hasnomorethanoneperiod(string2)
+testPeriods(string2)
 
 print(email+" is a valid email. We can spam you now! Woo!")
 
