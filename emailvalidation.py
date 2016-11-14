@@ -10,13 +10,22 @@
 # email format: local-part@domain
 
 
-# Check that there's exactly one @
+# Check for @
 def testATs(email):
+	# Check that there is exactly one @
 	numberOfATs = email.count("@")
 	if numberOfATs > 1 :
 		raise SystemExit("Sorry! There can only be one @ character in a valid email address.")
 	if "@" not in email:
 		raise SystemExit("Sorry! This is not a valid email. Your email must have an @ character.")
+	# Check that the @ is not the first or last character
+	positionOfAT = email.index("@")
+	if positionOfAT is 0:
+		raise SystemExit("Sorry! This is not a valid email. Your email cannot start with an @ character.")	
+	positionOfLastCharacter = len(email)-1
+	if positionOfAT is positionOfLastCharacter:
+		raise SystemExit("Sorry! This is not a valid email. Your email cannot end with an @ character.")	
+
 
 # Check for periods
 def testPeriods(string):
