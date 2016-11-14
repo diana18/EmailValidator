@@ -16,35 +16,45 @@ def testATs(email):
 	numberOfATs = email.count("@")
 	if numberOfATs > 1 :
 		raise SystemExit("Sorry! There can only be one @ character in a valid email address.")
+		
 	if "@" not in email:
 		raise SystemExit("Sorry! This is not a valid email. Your email must have an @ character.")
+
 	# Check that the @ is not the first or last character
 	positionOfAT = email.index("@")
 	if positionOfAT is 0:
 		raise SystemExit("Sorry! This is not a valid email. Your email cannot start with an @ character.")	
+
 	positionOfLastCharacter = len(email)-1
 	if positionOfAT is positionOfLastCharacter:
 		raise SystemExit("Sorry! This is not a valid email. Your email cannot end with an @ character.")	
 
 
 # Check for periods
-def testPeriods(string):
-	numberofperiods = string.count(".")
-	# Check whether it has more than 1 period
-	if numberofperiods > 1 :
+def testPeriods(email):
+	# Partition email into two strings separated by @
+	firstPart = email.split("@")[0] 
+	lastPart = email.split("@")[1]
+
+	# Check whether the last part has more than 1 period
+	numberOfPeriods = lastPart.count(".")
+	if numberOfPeriods > 1 :
 		raise SystemExit("Sorry! There can only be one dot after the @ in a valid email address.")
+
+	# Check for double periods
+	numberOfDoublePeriods = email.count("..")
+	if numberOfDoublePeriods > 0 :
+		raise SystemExit("Sorry! There cannot be a double period in a valid email address.")
+
 
 # Input your email
 print("Your Very Own Email Validator!")
 email = raw_input("Type your email: ")
 
 testATs(email)
+testPeriods(email)
 
-# Partition email into two strings separated by @
-string1 = email.split("@")[0] 
-string2 = email.split("@")[1]
 
-testPeriods(string2)
 
 print(email+" is a valid email. We can spam you now! Woo!")
 
