@@ -46,6 +46,15 @@ def testPeriods(email):
 	if numberOfDoublePeriods > 0 :
 		raise SystemExit("Sorry! There cannot be a double period in a valid email address.")
 
+	# Check that the period is not the first or last character of the first part
+	positionOfPeriod = email.index(".")
+	if positionOfPeriod is 0:
+		raise SystemExit("Sorry! This is not a valid email. Your email cannot start with a period.")	
+
+	positionOfLastCharacterOfFirstPart = len(firstPart)-1
+	if positionOfPeriod is positionOfLastCharacterOfFirstPart:
+		raise SystemExit("Sorry! This is not a valid email. The first part of your email cannot end with a period.")	
+
 
 # Input your email
 print("Your Very Own Email Validator!")
@@ -53,7 +62,6 @@ email = raw_input("Type your email: ")
 
 testATs(email)
 testPeriods(email)
-
 
 
 print(email+" is a valid email. We can spam you now! Woo!")
